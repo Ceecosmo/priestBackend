@@ -18,7 +18,9 @@ class Payment(models.Model):
     date_created = models.DateTimeField(auto_now_add=True, null=True, blank=True)
     class Meta:
         ordering = ('-date_created',)
-
+    def delete(self):
+        self.deleted = False
+        self.save()
     def __str__(self) -> str:
         return f"Creditor's Email: {self.email}, Amount Credited: {self.amount}"
         
