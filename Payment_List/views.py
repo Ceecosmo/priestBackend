@@ -31,13 +31,14 @@ def verify_payment(request: HttpRequest, ref:str) -> HttpResponse:
     if verified:
         context ={'payment':payment}
         messages.success(request, "Verification Successful")
-        return redirect('/') 
+        return render(request, 'payment/success.html', context)
+         
          
     else:
         context ={'payment':payment}
         messages.error(request, "Verification Failed! Please Contact Your Bank or Call Us on: 08099988991") 
-         
-        return render(request, 'payment/success.html', context)
+        return redirect('/')
+        
         
      
 
